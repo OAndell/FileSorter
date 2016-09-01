@@ -35,14 +35,15 @@ for file in files: #Sort files in specific folders
     elif (file.lower().endswith(".pdf") or file.lower().endswith(".txt")  or file.lower().endswith(".html")
         or file.lower().endswith(".docx") or file.lower().endswith(".odt") or file.lower().endswith(".doc")):    #DOCUMENTS
         shutil.move(currentDir + "/" + file, documentDir + "/" + file)
-    elif (file.lower().endswith(".mp4") or file.lower().endswith(".wmw") or file.lower().endswith(".avi")):          # Video
-        shutil.move(currentDir + "/" + file, programDir + "/" + file)
+    elif (file.lower().endswith(".mp4") or file.lower().endswith(".wmw") or file.lower().endswith(".avi")
+          or file.lower().endswith(".mkv")):          # Video
+        shutil.move(currentDir + "/" + file, videoDir + "/" + file)
     elif (file.lower().endswith(".zip") or file.lower().endswith(".rar")
-        or file.lower().endswith(".gz") or file.lower().endswith(".iso")):                                     # ARCHIVE
+        or file.lower().endswith(".gz") or file.lower().endswith(".iso") or file.lower().endswith(".7z")):    # ARCHIVE
         shutil.move(currentDir + "/" + file, archiveDir + "/" + file)
     elif (file.lower().endswith(".torrent")):                                                               # torrents
         shutil.move(currentDir + "/" + file, torrentDir + "/" + file)
-    elif (file.lower().endswith(".py") or file.lower().endswith(".java")):  # CODE
+    elif (file.lower().endswith(".py") or file.lower().endswith(".java")):                          # CODE
         if(file != os.path.basename(__file__)):
             shutil.move(currentDir + "/" + file, codeDir + "/" + file)
 removeEmpty(directories) #Removes unused folders
