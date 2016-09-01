@@ -11,6 +11,7 @@ def removeEmpty(directories):
         if (len(os.listdir(dir)) == 0):
             shutil.rmtree(dir)
     return;
+
 #MAIN
 print("Sorting Files...")
 currentDir = os.getcwd()
@@ -21,24 +22,28 @@ programDir = createdir(currentDir + "/Programs")
 documentDir = createdir(currentDir + "/Documents")
 archiveDir = createdir(currentDir + "/Archived")
 torrentDir = createdir(currentDir + "/Torrents")
-directories = [videoDir, pictureDir, audioDir, programDir, documentDir, archiveDir, torrentDir]
+codeDir = createdir(currentDir + "/Code")
+directories = [videoDir, pictureDir, audioDir, programDir, documentDir, archiveDir, torrentDir, codeDir]
 files = os.listdir() #Get files in current folder
-for i in files: #Sort files in specific folders
-    if(i.lower().endswith(".png") or i.lower().endswith(".jpg") or i.lower().endswith(".gif")):     #PICTURES
-        shutil.move(currentDir + "/" + i, pictureDir + "/" + i)
-    elif (i.lower().endswith(".exe")):                                                                 #PROGRAMS
-        shutil.move(currentDir + "/" + i, programDir + "/" + i)
-    elif (i.lower().endswith(".mp3")  or i.lower().endswith(".waw")):                                    #AUDIO
-        shutil.move(currentDir + "/" + i, audioDir + "/" + i)
-    elif (i.lower().endswith(".pdf") or i.lower().endswith(".txt")  or i.lower().endswith(".html")
-        or i.lower().endswith(".docx") or i.lower().endswith(".odt") or i.lower().endswith(".doc") ):    #DOCUMENTS
-        shutil.move(currentDir + "/" + i, documentDir + "/" + i)
-    elif (i.lower().endswith(".mp4") or i.lower().endswith(".wmw") or i.lower().endswith(".avi")):          # Video
-        shutil.move(currentDir + "/" + i, programDir + "/" + i)
-    elif (i.lower().endswith(".zip") or i.lower().endswith(".rar") or i.lower().endswith(".jar")
-        or i.lower().endswith(".gz") or i.lower().endswith(".iso")):                                     # ARCHIVE
-        shutil.move(currentDir + "/" + i, archiveDir + "/" + i)
-    elif (i.lower().endswith(".torrent")):                                                               # torrents
-        shutil.move(currentDir + "/" + i, torrentDir + "/" + i)
+for file in files: #Sort files in specific folders
+    if(file.lower().endswith(".png") or file.lower().endswith(".jpg") or file.lower().endswith(".gif")):     #PICTURES
+        shutil.move(currentDir + "/" + file, pictureDir + "/" + file)
+    elif (file.lower().endswith(".exe") or file.lower().endswith(".jar")):                                 #PROGRAMS
+        shutil.move(currentDir + "/" + file, programDir + "/" + file)
+    elif (file.lower().endswith(".mp3")  or file.lower().endswith(".waw")):                                    #AUDIO
+        shutil.move(currentDir + "/" + file, audioDir + "/" + file)
+    elif (file.lower().endswith(".pdf") or file.lower().endswith(".txt")  or file.lower().endswith(".html")
+        or file.lower().endswith(".docx") or file.lower().endswith(".odt") or file.lower().endswith(".doc")):    #DOCUMENTS
+        shutil.move(currentDir + "/" + file, documentDir + "/" + file)
+    elif (file.lower().endswith(".mp4") or file.lower().endswith(".wmw") or file.lower().endswith(".avi")):          # Video
+        shutil.move(currentDir + "/" + file, programDir + "/" + file)
+    elif (file.lower().endswith(".zip") or file.lower().endswith(".rar")
+        or file.lower().endswith(".gz") or file.lower().endswith(".iso")):                                     # ARCHIVE
+        shutil.move(currentDir + "/" + file, archiveDir + "/" + file)
+    elif (file.lower().endswith(".torrent")):                                                               # torrents
+        shutil.move(currentDir + "/" + file, torrentDir + "/" + file)
+    elif (file.lower().endswith(".py") or file.lower().endswith(".java")):  # CODE
+        if(file != os.path.basename(__file__)):
+            shutil.move(currentDir + "/" + file, codeDir + "/" + file)
 removeEmpty(directories) #Removes unused folders
 print("Sorting Complete")
